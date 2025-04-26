@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+
+message Book {
+  string id = 1;
+  string author = 2;
+  string title = 3;
+  int32 price = 4;
+}

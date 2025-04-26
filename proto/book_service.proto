@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+
+import "book_message.proto";
+import "filter_message.proto";
+import "google/protobuf/empty.proto";
+
+service BookService {
+  rpc CreateBook(CreateBookRequest) returns (CreateBookResponse);
+  rpc ReadBook(ReadBookRequest) returns (ReadBookResponse);
+  rpc ReadBooks(google.protobuf.Empty) returns (stream ReadBooksResponse);
+  rpc UpdateBook(UpdateBookRequest) returns (UpdateBookResponse);
+  rpc DeleteBook(DeleteBookRequest) returns (DeleteBookResponse);
+  rpc SearchBook(SearchBookRequest) returns (stream SearchBookResponse);
+}
+
+message CreateBookRequest { Book book = 1; }
+message CreateBookResponse { string id = 1; }
+
+message ReadBookRequest { string id = 1; }
+message ReadBookResponse { Book book = 1; }
+
+message ReadBooksResponse { Book book = 1; }
+
+message UpdateBookRequest {
+  string id = 1;
+  Book book = 2;
+}
+message UpdateBookResponse { Book book = 1; }
+
+message DeleteBookRequest { string id = 1; }
+message DeleteBookResponse { Book book = 1; }
+
+message SearchBookRequest { Filter filter = 1; }
+message SearchBookResponse { Book book = 1; }

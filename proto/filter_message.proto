@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+option go_package = ".;pb";
+
+message Filter {
+  string author = 1;
+  int32 price = 2;
+}
